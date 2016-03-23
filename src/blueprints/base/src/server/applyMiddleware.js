@@ -30,20 +30,21 @@ export const applyMiddleware = (server) => {
 
   server.use(morgan('dev'));
   server.use(compression());
-  server.use('/static', express.static(STATIC_ASSET_PATH));
+  server.use(bodyParser.json());
+  server.use(
+    '/static',
+    express.static(STATIC_ASSET_PATH, { maxAge: 31536000000 })
+  );
 
-  // server.use(bodyParser.urlencoded());
-  // server.use(bodyParser.json());
+  // Protect against HTTP Parameter Pollution attacks
+  server.use(hpp());
 
-  // // Protect against HTTP Parameter Pollution attacks
-  // server.use(hpp());
-
-  // // Secure server by setting various HTTP headers
-  // // server.use(helmet.contentSecurityPolicy({});
-  // server.use(helmet.xssFilter());
-  // server.use(helmet.frameguard('deny'));
-  // server.use(helmet.ieNoOpen());
-  // server.use(helmet.noSniff());
+  // Secure server by setting various HTTP headers
+  // server.use(helmet.contentSecurityPolicy({});
+  server.use(helmet.xssFilter());
+  server.use(helmet.frameguard('deny'));
+  server.use(helmet.ieNoOpen());
+  server.use(helmet.noSniff());
 
   // Hook onto our SSR route
   server.get('*', function (req, res) {

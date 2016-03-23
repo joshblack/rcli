@@ -7,11 +7,12 @@ var AssetsPlugin = require('assets-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var babelOptions = require('./resources/babel/babelOptions').babelBaseOptions;
 
+var NODE_ENV = process.env.NODE_ENV || 'development';
 var BUILD_PATH = path.resolve(__dirname, 'static');
+
 var assetsPluginInstance = new AssetsPlugin({
   filename: 'static/webpack-assets.json',
 });
-var NODE_ENV = process.env.NODE_ENV || 'development';
 
 var externals = fs.readdirSync(path.resolve(__dirname, 'node_modules'))
   .concat(['react-dom/server'])
@@ -41,15 +42,6 @@ var plugins = [
   }),
   assetsPluginInstance,
   new ExtractTextPlugin('main.[hash].css', { allChunks: true })
-];
-
-var loaders = [
-  {
-    test: /\.js$/,
-    loader: 'babel',
-    query: babelOptions,
-    exclude: /node_modules/
-  }
 ];
 
 var postcssConfig = [
@@ -126,3 +118,4 @@ module.exports = [
     postcss: postcssConfig,
   }
 ];
+

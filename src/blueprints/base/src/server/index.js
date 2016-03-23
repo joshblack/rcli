@@ -1,5 +1,5 @@
 import express from 'express';
-import { applyMiddleware } from '../middleware/applyMiddleware';
+import { applyMiddleware } from './applyMiddleware';
 
 const PORT = process.env.PORT || 3000;
 const app = express();
