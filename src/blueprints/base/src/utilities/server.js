@@ -3,7 +3,7 @@ import path from 'path';
 import zlib from 'zlib'
 
 function getFingerprintSignature() {
-  const file = path.resolve('../', 'static', 'webpack-assets.json');
+  const file = path.resolve('static/webpack-assets.json');
 
   return JSON.parse(fs.readFileSync(file, 'utf8'));
 }
@@ -39,18 +39,19 @@ export function write(string, type, res) {
 
 export function createPage(html) {
   const fingerprints = getFingerprintSignature();
-  console.log(fingerprints);
+  const STYLE_PATH = fingerprints.server.css;
+  const SCRIPT_PATH = fingerprints.main.js;
 
   return `<!doctype html>
 <html>
   <head>
     <meta charset="utf-8">
     <title>SSR Production Server Example</title>
-    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="${STYLE_PATH}">
   </head>
   <body>
     <div id="root">${html}</div>
-    <script src="/static/js/main.js"></script>
+    <script src="${SCRIPT_PATH}"></script>
   </body>
 </html>
 `;

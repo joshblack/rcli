@@ -24,14 +24,14 @@ var externals = fs.readdirSync(path.resolve(__dirname, 'node_modules'))
 var plugins = [
   new webpack.optimize.OccurenceOrderPlugin(),
   new webpack.NoErrorsPlugin(),
-  // new webpack.optimize.UglifyJsPlugin({
-    // compressor: {
-      // screw_ie8: true
-    // },
-    // output: {
-      // comments: false
-    // }
-  // }),
+  new webpack.optimize.UglifyJsPlugin({
+    compressor: {
+      screw_ie8: true
+    },
+    output: {
+      comments: false
+    }
+  }),
   new webpack.optimize.DedupePlugin(),
   new webpack.DefinePlugin({
     'process.env': {
@@ -49,14 +49,6 @@ var loaders = [
     loader: 'babel',
     query: babelOptions,
     exclude: /node_modules/
-  },
-  {
-    test: /\.css$/,
-    loader: ExtractTextPlugin.extract(
-      'style',
-      'css?modules&importLoaders=1&localIdentName=[hash:base64:5]&minimize',
-      'postcss'
-    )
   }
 ];
 
@@ -95,8 +87,7 @@ module.exports = [
           test: /\.css$/,
           loader: ExtractTextPlugin.extract(
             'style',
-            // 'css?modules&importLoaders=1&localIdentName=[hash:base64:5]&minimize',
-            'css?modules&importLoaders=1&localIdentName=[hash:base64:5]',
+            'css?modules&importLoaders=1&localIdentName=[hash:base64:5]&minimize',
             'postcss'
           )
         }
@@ -126,8 +117,7 @@ module.exports = [
           test: /\.css$/,
           loaders: [
             'style',
-            // 'css?modules&importLoaders=1&localIdentName=[hash:base64:5]&minimize',
-            'css?modules&importLoaders=1&localIdentName=[hash:base64:5]',
+            'css?modules&importLoaders=1&localIdentName=[hash:base64:5]&minimize',
             'postcss'
           ]
         }
