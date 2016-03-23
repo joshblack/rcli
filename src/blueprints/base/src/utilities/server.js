@@ -1,4 +1,12 @@
+import fs from 'fs';
+import path from 'path';
 import zlib from 'zlib'
+
+function getFingerprintSignature() {
+  const file = path.resolve('../', 'static', 'webpack-assets.json');
+
+  return JSON.parse(fs.readFileSync(file, 'utf8'));
+}
 
 export function writeError(msg, res) {
   res.writeHead(500, { 'Content-Type': 'text/html' })
@@ -30,6 +38,9 @@ export function write(string, type, res) {
 }
 
 export function createPage(html) {
+  const fingerprints = getFingerprintSignature();
+  console.log(fingerprints);
+
   return `<!doctype html>
 <html>
   <head>

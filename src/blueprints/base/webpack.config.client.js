@@ -12,10 +12,10 @@ module.exports = {
   entry: './src/index',
   output: {
     path: __dirname + '/static/js',
-    filename: '[name].js',
-    chunkFilename: '[id].chunk.js',
+    filename: '[name].[hash].js',
+    chunkFilename: '[id].[hash].chunk.js',
     publicPath: '/static/',
-    sourceMapFilename: '[file].map'
+    sourceMapFilename: '[file].[hash].map'
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
@@ -35,7 +35,7 @@ module.exports = {
       },
       '__DEV__': JSON.stringify(NODE_ENV === 'development'),
     }),
-    new ExtractTextPlugin('../css/[name].css', { allChunks: true })
+    new ExtractTextPlugin('../css/[name].[hash].css', { allChunks: true })
   ],
   module: {
     loaders: [

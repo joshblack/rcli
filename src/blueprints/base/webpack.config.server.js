@@ -20,7 +20,7 @@ module.exports = {
   devtool: 'source-map',
   entry: path.resolve(__dirname, 'src', 'server', 'index.js'),
   output: {
-    filename: 'server.bundle.js'
+    filename: './static/server.bundle.[hash].js'
   },
   target: 'node',
   externals: externals,
@@ -45,7 +45,7 @@ module.exports = {
       },
       '__DEV__': JSON.stringify(NODE_ENV === 'development')
     }),
-    new ExtractTextPlugin('./static/css/[name].css', { allChunks: true })
+    new ExtractTextPlugin('./static/css/[name].[hash].css', { allChunks: true })
   ],
   module: {
     loaders: [
@@ -63,6 +63,14 @@ module.exports = {
           'postcss'
         )
       }
+      // {
+        // test: /\.css$/,
+        // loaders: [
+          // 'style',
+          // 'css?modules&importLoaders=1&localIdentName=[hash:base64:5]&minimize',
+          // 'postcss'
+        // ]
+      // }
     ]
   },
   postcss: [

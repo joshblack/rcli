@@ -9,3 +9,6 @@ config/.env
 
 # Ignore generated webpack bundles
 **.bundle.**
+
+# Ignore generated files
+npm-debug.log
