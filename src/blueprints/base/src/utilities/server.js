@@ -45,7 +45,7 @@ export function createPage(html) {
   return `<!doctype html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>SSR Production Server Example</title>
     <link rel="stylesheet" href="${STYLE_PATH}">
   </head>

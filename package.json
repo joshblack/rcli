@@ -10,10 +10,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-polyfill": "^6.7.4",
     "chalk": "^1.1.1",
     "commander": "^2.9.0",
     "fbjs": "^0.7.2",
+    "fs-extra": "^0.26.7",
     "mkdirp": "^0.5.1",
+    "moment": "^2.12.0",
     "shelljs": "^0.6.0"
   },
   "babel": {
