@@ -1,18 +1,35 @@
 import chalk from 'chalk';
 import moment from 'moment';
 
-const APP_IDENTIFIER = '[rcli]';
+const APP_IDENTIFIER = chalk.underline('[rcli]');
 
-export const print = (message) => {
+export const print = (...messages) => {
   const timestamp = chalk.gray(moment().format('h:mm:ss'));
 
-  console.log(`${timestamp} ${chalk.bgMagenta(APP_IDENTIFIER)} ${message}`);
+  console.log(timestamp, APP_IDENTIFIER, ...messages);
 };
 
 export const printError = (error) => {
-  console.log(`${chalk.bgRed(APP_IDENTIFIER)} Error!`);
-  console.log(error.message);
+  const timestamp = chalk.gray(moment().format('h:mm:ss'));
+
+  console.log(
+    timestamp,
+    APP_IDENTIFIER,
+    chalk.bgRed(`Error!`),
+    chalk.bgBlack(error.message)
+  );
   console.log(error.stack);
+};
+
+export const printWarning = (warning) => {
+  const timestamp = chalk.gray(moment().format('h:mm:ss'));
+
+  console.log(
+    timestamp,
+    APP_IDENTIFIER,
+    chalk.bgBlack(chalk.yellow('Warning:')),
+    warning
+  );
 };
 
 export const printOptions = (options) => options.reduce((acc, option, i) => {

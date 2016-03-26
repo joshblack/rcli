@@ -1,14 +1,17 @@
 import invariant from 'fbjs/lib/invariant';
 
 const registerOption = (program, option) => {
-  const { value, description, defaultValue } = option;
+  const { value, description, pattern, defaultValue } = option;
 
   invariant(
     value,
     'Each option needs a value specified.',
   );
 
-  program.option(value, description, defaultValue);
+  const order = [value, description, pattern, defaultValue];
+  const optionValues = order.filter((value) => value);
+
+  program.option(...optionValues);
 };
 
 export const command = ({

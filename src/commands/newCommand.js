@@ -60,6 +60,8 @@ export const newCommand = command({
         await adapter.addFiles(distPath);
       }
 
+      await pkg.installAll();
+
       print(`All Done! Check out your project at ${distPath} 🚀`);
     } catch (error) {
       printError(error);

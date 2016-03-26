@@ -36,6 +36,23 @@ class Package {
     exec(command, (error) => {
       if (error) {
         reject(error);
+        return;
+      }
+
+      resolve();
+    });
+  });
+
+  installAll = () => new Promise((resolve, reject) => {
+    const packageFileDirectory = path.resolve(this._packageFilePath, '..');
+    const command = `cd ${packageFileDirectory} && npm install`;
+
+    print('Running `npm install` to catch any missing modules');
+
+    exec(command, (error) => {
+      if (error) {
+        reject(error);
+        return;
       }
 
       resolve();
