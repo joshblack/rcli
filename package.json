@@ -1,6 +1,6 @@
 {
   "name": "rcli",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Command-line utility for working with React applications",
   "bin": "bin/index.js",
   "scripts": {
