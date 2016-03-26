@@ -1,6 +1,6 @@
 {
   "name": "rcli",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Command-line utility for working with React applications",
   "bin": "bin/index.js",
   "scripts": {
@@ -46,6 +46,9 @@
     "rimraf": "^2.5.2"
   },
   "babel": {
-    "presets": ["es2015", "stage-1"]
+    "presets": [
+      "es2015",
+      "stage-1"
+    ]
   }
 }
