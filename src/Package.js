@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
-import { exec } from 'child_process';
-import { print } from './utilities/print';
+import { exec, spawn } from 'child_process';
+import { print, printOptions } from './utilities/print';
 
 class Package {
   constructor(packageInfo, packageFilePath) {
@@ -25,39 +25,30 @@ class Package {
 
   install = (packageNames) => new Promise((resolve, reject) => {
     const packageFileDirectory = path.resolve(this._packageFilePath, '..');
-    const command = [
-      `cd ${packageFileDirectory}`,
-      `npm install ${packageNames.join(' ')} --save-dev`
-    ].join(' && ');
+    const options = {
+      cwd: packageFileDirectory,
+      stdio: 'inherit',
+    };
 
-    print(`Running: ${command} 🙃`);
-    print('Please be patient and kind while waiting for `npm@3` to finish! ☀️☀️☀️');
+    print(`Installing: ${printOptions(packageNames)} 🙃`);
+    print('Please be patient and kind while waiting for npm@3 to finish! ☀️ ☀️ ☀️');
 
-    exec(command, (error) => {
-      if (error) {
-        reject(error);
-        return;
-      }
-
-      resolve();
-    });
+    const npm = spawn('npm', ['install', ...packageNames, '--save-dev'], options);
+    npm.on('close', resolve);
   });
 
   installAll = () => new Promise((resolve, reject) => {
     const packageFileDirectory = path.resolve(this._packageFilePath, '..');
-    const command = `cd ${packageFileDirectory} && npm install`;
+    const options = {
+      cwd: packageFileDirectory,
+      stdio: 'inherit',
+    };
 
-    print(`Running: ${command} 🙃`);
-    print('Please be patient and kind while waiting for `npm@3` to finish! ☀️☀️☀️');
+    print(`Running: npm install 🙃`);
+    print('Please be patient and kind while waiting for npm@3 to finish! ☀️ ☀️ ☀️');
 
-    exec(command, (error) => {
-      if (error) {
-        reject(error);
-        return;
-      }
-
-      resolve();
-    });
+    const npm = spawn('npm', ['install'], options);
+    npm.on('close', resolve);
   });
 
   viewPackageFile = () => new Promise((resolve, reject) => {
