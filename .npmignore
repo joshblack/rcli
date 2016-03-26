@@ -1,0 +1,13 @@
+# Ignore generated directories
+node_modules
+static
+
+# Ignore dotfiles
+.DS_Store
+config/.env
+
+# Ignore generated webpack bundles
+**.bundle.**
+
+# Ignore generated files
+npm-debug.log

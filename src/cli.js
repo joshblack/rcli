@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import program from 'commander';
 import { commands } from './commands';
 

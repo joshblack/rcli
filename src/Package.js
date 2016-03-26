@@ -30,8 +30,8 @@ class Package {
       `npm install ${packageNames.join(' ')} --save-dev`
     ].join(' && ');
 
-    print(`Running: ${command}`);
-    print('Please be patient and kind while waiting for `npm@3` to finish!');
+    print(`Running: ${command} 🙃`);
+    print('Please be patient and kind while waiting for `npm@3` to finish! ☀️☀️☀️');
 
     exec(command, (error) => {
       if (error) {
@@ -47,7 +47,8 @@ class Package {
     const packageFileDirectory = path.resolve(this._packageFilePath, '..');
     const command = `cd ${packageFileDirectory} && npm install`;
 
-    print('Running `npm install` to catch any missing modules');
+    print(`Running: ${command} 🙃`);
+    print('Please be patient and kind while waiting for `npm@3` to finish! ☀️☀️☀️');
 
     exec(command, (error) => {
       if (error) {

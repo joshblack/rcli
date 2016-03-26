@@ -41,7 +41,11 @@ export const newCommand = command({
     ].filter((option) => option.value)
      .map(defaultOptionValue);
 
-    print(`Creating your project, \`${appName}\`, with ${printOptions(options)}`);
+    if (options.length === 0) {
+      print(`Creating your project, \`${appName}\``);
+    } else {
+      print(`Creating your project, \`${appName}\`, with ${printOptions(options)}`);
+    }
 
     try {
       print('Moving the base project files over...');
@@ -50,6 +54,8 @@ export const newCommand = command({
       print('Registering the project\'s `package.json` file');
       const packageFilePath = path.resolve(distPath, 'package.json');
       const pkg = await buildPackage(packageFilePath);
+
+      await pkg.installAll();
 
       for (let option of options) {
         const adapter = adapters[option];
@@ -60,9 +66,7 @@ export const newCommand = command({
         await adapter.addFiles(distPath);
       }
 
-      await pkg.installAll();
-
-      print(`All Done! Check out your project at ${distPath} 🚀`);
+      print(`✅  All Done! Check out your project at ${distPath} 🚀`);
     } catch (error) {
       printError(error);
     }

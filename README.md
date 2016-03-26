@@ -1,6 +1,11 @@
-# React Command Line, `rcli`
+# React Command Line `rcli`
 
-`rcli` is a utility to help quickly scaffold out new, production-grade applications as well as provide convenient generators for rapid application development.
+`rcli` is a utility to help quickly scaffold out new, production-grade applications and provide generators for rapid application development.
+
+```sh
+# Install
+npm install -g rcli
+```
 
 ## Overview
 
@@ -30,7 +35,7 @@ Options:
 You can quickly scaffold a new application by running:
 
 ```sh
-rcli new applicationName
+$ rcli new appName
 ```
 
 This will create a folder called `applicationName` that contains a base project that will allow you to run a development server that includes useful features like Hot-Module Replacement. It also provides a base production-grade implementation that includes support for Server-side Rendering, basic Express Security, and asset fingerprinting.
