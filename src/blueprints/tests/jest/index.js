@@ -32,10 +32,11 @@ const packages = [
   'babel-plugin-webpack-loaders',
   'babel-polyfill',
   'babel-core',
+  'react-addons-test-utils',
 ];
 
 const jestScripts = {
-  test: 'jest',
+  test: 'BABEL_DISABLE_CACHE=1 jest',
   'test:clean': 'rm -rf node_modules/jest-cli/.haste_cache && jest',
 };
 

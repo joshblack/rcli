@@ -14,6 +14,7 @@ const checkRequiredOptions = requiredOptions({
   directory: false,
   folder: true,
   stateless: true,
+  includeTest: true,
 });
 
 export const generate = command({
@@ -36,6 +37,10 @@ export const generate = command({
       value: '-s, --stateless [stateless]',
       description: 'Specify whether this is a stateless component or not.',
     },
+    {
+      value: '--include-test',
+      description: 'Include a test when creating a component',
+    },
   ],
   handler: async (item, program) => {
     const {
@@ -43,17 +48,20 @@ export const generate = command({
       directory,
       folder = false,
       stateless = false,
+      includeTest = false,
     } = program.parent;
+
     const options = {
       component,
       directory,
       folder,
       stateless,
+      includeTest,
     };
 
     try {
       invariant(
-        item === 'component' /* || item === 'route' */,
+        item === 'component',
         'Whoops! `generate` expects `component` right now.',
       );
 
