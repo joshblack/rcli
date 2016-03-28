@@ -39,7 +39,7 @@ export function write(string, type, res) {
 
 export function createPage(html) {
   const fingerprints = getFingerprintSignature();
-  const STYLE_PATH = fingerprints.server.css;
+  const STYLE_PATH = fingerprints.main.css;
   const SCRIPT_PATH = fingerprints.main.js;
 
   return `<!doctype html>

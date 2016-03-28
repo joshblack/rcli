@@ -81,8 +81,8 @@ module.exports = [
             'style',
             'css?modules&importLoaders=1&localIdentName=[hash:base64:5]&minimize',
             'postcss'
-          )
-        }
+          ),
+        },
       ],
     },
     postcss: postcssConfig,
@@ -107,12 +107,12 @@ module.exports = [
         },
         {
           test: /\.css$/,
-          loaders: [
+          loader: ExtractTextPlugin.extract(
             'style',
             'css?modules&importLoaders=1&localIdentName=[hash:base64:5]&minimize',
             'postcss'
-          ]
-        }
+          ),
+        },
       ],
     },
     postcss: postcssConfig,

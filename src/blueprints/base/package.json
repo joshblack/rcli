@@ -5,12 +5,16 @@
   "scripts": {
     "build": "npm run clean:prod && NODE_ENV=production webpack --progress",
     "clean:prod": "rimraf static",
+    "start": "npm run build && npm run start:prod",
     "start:dev": "BABEL_DISABLE_CACHE=1 node src/server/dev.js",
     "start:prod": "node index.js",
     "lint": "echo \"Error: no linter specified\" && exit 1",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
+  "engines": {
+    "node": "5.x.x"
+  },
   "devDependencies": {
     "assets-webpack-plugin": "^3.4.0",
     "autoprefixer": "^6.3.4",
