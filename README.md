@@ -3,7 +3,6 @@
 `rcli` is a utility to help quickly scaffold out new, production-grade applications and provide generators for rapid application development.
 
 ```sh
-# Install
 npm install -g rcli
 ```
 
