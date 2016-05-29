@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/joshblack/rcli",
   "dependencies": {
-    "babel-polyfill": "^6.8.0",
+    "babel-polyfill": "^6.9.1",
     "chalk": "^1.1.1",
     "commander": "^2.9.0",
     "fbjs": "^0.8.2",
